@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Making a Good Impression</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5rbFwtMBEepMQlvmoIKsiAtoEF2eIBvQ&libraries=places"> </script>
+    <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/routeboxer/src/RouteBoxer.js"></script>
+    <script type="text/javascript" src="index.js"></script>   
+  </head>
+
+  <body>
+    <div id="container">
+        <div id="map-canvas"> </div>
+        <div id="instructions">
+            <img class="transit-type" src="icons/transit.png" alt="Public Transit" text="Public Transit" onclick="change_transit_mode('TRANSIT')"/>
+            <img class="transit-type" src="icons/bicycling.png" alt="Biking" text="Biking" onclick="change_transit_mode('BICYCLING')"/>
+            <img class="transit-type" src="icons/walking.png" alt="Walking" text="Walking" onclick="change_transit_mode('WALKING')"/>
+            <br>
+            <strong>Start: </strong><span id="start"></span> <br>
+            <strong>End: </strong><span id="end"></span> <br>
+            <strong>Warnings: </strong><span id="warnings_panel"></span> <br>
+            <strong>Steps: </strong><br><span id="steps"></span> <br>
+        </div>
+    </div>
+  </body>
+
+</html>
