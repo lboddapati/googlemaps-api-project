@@ -18,6 +18,9 @@ var distance;
 var placesService;
 var waypts = [];
 
+var avoidHighways;
+var showAlternateRoutes;
+
 // Wait till the document is loaded and then
 // call the function initialize.
 google.maps.event.addDomListener(window, 'load', initialize);
@@ -41,10 +44,27 @@ function change_transit_mode(selected, mode) {
 }
 
 
+// Recalculate route to avoid highways (or not)
+function avoidHighwaysHandler(checkbox) {
+    avoidHighways = checkbox.checked;
+    calcRoute();
+}
+
+
+// Recalcute route to show alternate routes (or not)
+function alternateRoutesHandler(checkbox) {
+    showAlternateRoutes = checkbox.checked;
+    calcRoute();
+}
+
+
 // Initialize
 function initialize() {
   transitMode = "TRANSIT";
   document.getElementById('transit').style.backgroundColor = '#94DBFF';
+
+  avoidHighways = false;
+  showAlternateRoutes = false;
 
   routeBoxer = new RouteBoxer();
   distance = 3; // km
@@ -117,13 +137,15 @@ function calcRoute() {
   var route_request = {
       origin: source,
       destination: destn,
-      travelMode: transitMode
+      travelMode: transitMode,
+      provideRouteAlternatives: showAlternateRoutes
   };
 
   // Since TRANSIT mode doesn't support waypoints, check the mode.
   if(transitMode != 'TRANSIT') {
     route_request.waypoints = waypts;
     route_request.optimizeWaypoints = true;
+    route_request.avoidHighways = avoidHighways;
   }
 
   // Route the directions and pass the response to a
