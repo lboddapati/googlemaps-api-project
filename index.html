@@ -12,14 +12,11 @@
     <div id="container">
         <div id="map-canvas"> </div>
         <div id="instructions">
-            <img class="transit-type" src="icons/transit.png" alt="Public Transit" text="Public Transit" onclick="change_transit_mode('TRANSIT')"/>
-            <img class="transit-type" src="icons/bicycling.png" alt="Biking" text="Biking" onclick="change_transit_mode('BICYCLING')"/>
-            <img class="transit-type" src="icons/walking.png" alt="Walking" text="Walking" onclick="change_transit_mode('WALKING')"/>
+            <img class="transit-type" id="transit" src="icons/transit.png" alt="Public Transit" text="Public Transit" onclick="change_transit_mode(this, 'TRANSIT')"/>
+            <img class="transit-type" id="biking" src="icons/bicycling.png" alt="Biking" text="Biking" onclick="change_transit_mode(this, 'BICYCLING')"/>
+            <img class="transit-type" id="walking" src="icons/walking.png" alt="Walking" text="Walking" onclick="change_transit_mode(this, 'WALKING')"/>
             <br>
-            <strong>Start: </strong><span id="start"></span> <br>
-            <strong>End: </strong><span id="end"></span> <br>
-            <strong>Warnings: </strong><span id="warnings_panel"></span> <br>
-            <strong>Steps: </strong><br><span id="steps"></span> <br>
+            <div id="directions-panel"></div>
         </div>
     </div>
   </body>

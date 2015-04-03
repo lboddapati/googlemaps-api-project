@@ -1,7 +1,8 @@
 html, body{
   height: 100%;
   margin: 0px;
-  padding: 0px
+  padding: 0px;
+  font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
 }
 #container {
   width: 100%;
@@ -17,13 +18,16 @@ html, body{
 #instructions {
   height: 100%;
   width: 45%;
-  margin-left: 10px;
   float: right;
-  overflow: scroll;
 }
 .transit-type {
   width: 50px;
   height: 50px;
   border: 1px solid black;
+}
+#directions-panel {
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
 }
 
