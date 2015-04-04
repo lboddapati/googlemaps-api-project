@@ -10,3 +10,6 @@ INSTRUCTIONS TO RUN:
 - You can also choose options like 'Avoid highways' and 'Show Alternate Routes'.
 - Hover over the suggested places to see details about it.
 - Click on the place you like to add it as a waypoint to your route. (Doesn't work with public transit mode).
+
+NOTE: Your browser must support Geolocation. You must also consent to location sharing when prompted by your browser.
+For Safari on MAC, make sure that location services are enabled in System Preferences.
