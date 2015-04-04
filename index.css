@@ -30,4 +30,8 @@ html, body{
   width: 100%;
   overflow: scroll;
 }
-
+.icon {
+  height: 15px;
+  width: 15px;
+  padding-right: 5px;
+}

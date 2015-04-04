@@ -21,6 +21,8 @@ var waypts = [];
 var avoidHighways;
 var showAlternateRoutes;
 
+var priceRange = ['Free', 'Inexpensive', 'Moderate', 'Expensive', 'Very Expensive'];
+
 // Wait till the document is loaded and then
 // call the function initialize.
 google.maps.event.addDomListener(window, 'load', initialize);
@@ -67,7 +69,7 @@ function initialize() {
   showAlternateRoutes = false;
 
   routeBoxer = new RouteBoxer();
-  distance = 3; // km
+  distance = 5; // km
 
   // Instantiate geocoder.
   geocoder = new google.maps.Geocoder();
@@ -166,8 +168,7 @@ function calcRoute() {
         // Perform search over these bounds 
         var places_request = {
             bounds: search_bounds,
-            keyword: 'donuts & coffee',
-            //openNow: true,
+            keyword: 'coffee donuts',
             types: ['store', 'cafe', 'restaurant', 'bakery', 'food']
         };
         placesService.nearbySearch(places_request, function(searchResults, searchStatus) {
@@ -196,7 +197,7 @@ function createMarker(place) {
   markerArray.push(marker); // keep track of each marker to remove them
                             // when calculating new routes.
 
-  add_infowindow(marker, place.name);   //add infowindow for the marker.
+  add_infowindow(marker, place);   //add infowindow for the marker.
 
   // If the place is the chosen waypoint, change the color of marker to blue.
   if(waypts.length>0) {
@@ -223,7 +224,31 @@ function createMarker(place) {
 
 
 // Show infowindow on mouseover. The infowindow disappears on mouseout.
-function add_infowindow(marker, content) {
+function add_infowindow(marker, place) {
+    var content = '<img src="'+place.icon+'" class="icon"/>';
+    content += place.name;
+    if(place.opening_hours != null) {
+       if(place.opening_hours.open_now) {
+          content += ' (open)';
+       } else {
+          content += ' (closed)';
+       }
+    }
+    if(place.rating != null) {
+        content += '<br>Rating: '+place.rating;
+    }
+    if(place.price_level != null) {
+        content += '<br> Price Range: '+priceRange[place.price_level];
+    }
+    if(place.formatted_address != null) {
+        content += '<br> Address: '+place.formatted_address;
+    }
+    if(place.formatted_phone_number != null) {
+        content += '<br> Phone: '+place.formatted_phone_number;
+    }
+    if(place.website != null) {
+        content += '<br>'+place.website;
+    }
     var infowindow = new google.maps.InfoWindow();
     google.maps.event.addListener(marker, 'mouseover', function() {
       infowindow.setContent(content);
